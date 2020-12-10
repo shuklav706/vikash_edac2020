@@ -1,0 +1,175 @@
+create database assignment2;
+use assignment2;
+create table publisher(
+	pubid int(3) primary key,
+    pname varchar(30),
+    ename varchar(35),
+    phone varchar(30)
+);
+select * from publisher;
+alter table publisher change column ename  email varchar(35);
+
+create table subjects(
+	subid int(3) primary key,
+    sname varchar(10)
+);
+select * from subjects;
+
+alter table subjects drop primary key;
+alter table subjects modify column subid varchar(3);
+alter table subjects modify sname varchar(30);
+alter table subjects modify subid varchar(5);
+
+create table authors(
+	auid int(3) primary key,
+    aname varchar(30),
+    email varchar(30),
+    phone varchar(30)
+);
+select * from authors;
+alter table authors modify auid int(5);    
+    
+    
+CREATE TABLE  TITLES
+(
+    TITLEID    INT(5) PRIMARY KEY,
+    TITLE      VARCHAR(30),
+    PUBID      INT(3),
+    SUBID      INT(3),
+    PUBDATE    DATE,
+    COVER      CHAR(1)  CHECK ( COVER IN ('P','H','p','h')),
+    PRICE      INT(4),
+	CONSTRAINT TITLES_PUBID_FK FOREIGN KEY (PUBID) REFERENCES PUBLISHER(PUBID),
+	CONSTRAINT TITLES_SUBID_FK FOREIGN KEY (SUBID) REFERENCES SUBJECTS(SUBID)
+);
+
+alter table titles drop foreign key TITLES_PUBID_FK ;
+alter table titles drop foreign key TITLES_subID_FK ;
+alter table titles modify column subid varchar(3);
+alter table titles add constraint foreign key (pubid) references publisher(pubid);
+desc titles;
+alter table TITLES modify subid varchar(5);
+select * from titles;
+
+
+CREATE TABLE  TITLEAUTHORS
+(
+    TITLEID    int(5) ,
+    AUID       int(5) ,
+    IMPORTANCE int(2),
+   PRIMARY KEY(TITLEID,AUID),
+   CONSTRAINT  TITLESAUTHORS_TITLEID_FK FOREIGN KEY (TITLEID) REFERENCES TITLES(TITLEID),
+   CONSTRAINT  TITLESAUTHORS_AUTHID_FK FOREIGN KEY (AUID) REFERENCES AUTHORS(AUID)
+);
+
+desc titleauthors;
+select * from titleauthors;
+
+CREATE TABLE  SUBJECTS_BACKUP
+(
+    SUBID      VARCHAR(5) PRIMARY KEY,
+    SNAME      VARCHAR(30)
+);
+select * from subjects_backup;
+
+INSERT INTO SUBJECTS VALUES ('ORA','ORACLE DATABASE 10g');
+insert into subjects values('java','java langauge');
+INSERT INTO SUBJECTS VALUES ('JEE','JAVA ENTERPRISE EDITION');
+INSERT INTO SUBJECTS VALUES('VB','VISUAL BASIC.NET');
+INSERT INTO SUBJECTS VALUES('ASP','ASP.NET');
+
+
+ INSERT INTO PUBLISHERS VALUES (1,'WILLEY','WDT@VSNL.NET','91-11-23260877');
+ INSERT INTO PUBLISHERS VALUES (2,'WROX','INFO@WROX.COM',NULL);
+ INSERT INTO PUBLISHERS VALUES (3,'TATA MCGRAW-HILL','FEEDBACK@TATAMCGRAWHILL.COM','91-11-33333322');
+ INSERT INTO PUBLISHERS VALUES (4,'TECHMEDIA','BOOKS@TECHMEDIA.COM','91-11-33257660');
+
+INSERT INTO AUTHORS VALUES (101, 'HERBERT SCHILD','HERBERT@YAHOO.COM',NULL);
+INSERT INTO AUTHORS VALUES (102, 'JAMES GOODWILL','GOODWILL@HOTMAIL.COM',NULL);
+INSERT INTO AUTHORS VALUES (103, 'DAVAID HUNTER','HUNTER@HOTMAIL.COM',NULL);
+INSERT INTO AUTHORS VALUES (104, 'STEPHEN WALTHER','WALTHER@GMAIL.COM',NULL);
+INSERT INTO AUTHORS VALUES (105, 'KEVIN LONEY','LONEY@ORACLE.COM',NULL);
+INSERT INTO AUTHORS VALUES (106, 'ED. ROMANS','ROMANS@THESERVERSIDE.COM',NULL);
+
+
+INSERT INTO TITLES VALUES (1001,'ASP.NET UNLEASHED',4,'ASP','2002-04-12','P',540);
+INSERT INTO TITLES VALUES (1002,'ORACLE10G COMP. REF.',3,'ORA','2005-05-01','P',575);
+INSERT INTO TITLES VALUES (1003,'MASTERING EJB',1,'JEE','2005-02-03','P',475);
+INSERT INTO TITLES VALUES (1004,'JAVA COMP. REF',3,'JAVA','2005-04-03','P',499);
+INSERT INTO TITLES VALUES (1005,'PRO. VB.NET',2,'VB','2005-01-15','P',450);
+INSERT INTO TITLES VALUES (1006,'PRO. VB.NET',2,'VB','2005-01-15','P',450);
+
+select * from titles;
+
+desc titleauthors;
+select * from titleauthors;
+INSERT INTO TITLEAUTHORS VALUES(1001,104,1);
+INSERT INTO TITLEAUTHORS VALUES (1002,105,1);
+INSERT INTO TITLEAUTHORS VALUES (1003,106,1);
+INSERT INTO TITLEAUTHORS VALUES (1004,101,1);
+INSERT INTO TITLEAUTHORS VALUES (1006,102,1);
+INSERT INTO TITLEAUTHORS VALUES (1005,102,2);
+
+-- =====================================================
+
+select * from publisher;
+select aname,phone from authors;
+select titleid,title,pubdate from titles;
+select auid,titleid,importance from titleauthors;
+
+
+select sname from subjects where sname like('%oracle%');
+select sname from subjects where sname like('j%');
+select sname from subjects where sname like('%.net');
+select aname from authors where aname like('%er');
+select pname from publisher where pname like('%hill%');
+
+select title from titles where price<500;
+select pubdate from titles where pubdate<'2005-04-02';
+select sname from subjects where subid ='java' or subid ='jee';
+select  aname from authors where auid>'103';
+select * from titles where titleid=101 or price>400;
+
+
+select * from publisher where pname in('techmedia','wrox');
+
+
+select  max(price) from titles ; 
+select avg(importance) from titleauthors;
+select count(*) from authors;
+select sum(price) from titles;
+
+
+select  title from titles where pubdate='2005-04-03';
+SELECT YEAR(CURDATE());
+select month(current_date());
+
+
+
+
+
+
+
+
+
+
+
+=====================================================
+create database assignment2_2;
+use assignment2_2;
+create table employee(
+emp_id int(10),
+emp_name varchar(30)
+);
+desc employee;
+insert into employee values(10,'vikash');
+insert into employee value(20,'vikram');
+insert into employee values(30,'viraj');
+
+alter table employee add dept_id int(10); 
+select * from employee;
+alter table employee modify emp_name char(10);
+alter table employee rename scott;
+select * from scott;
+truncate table scott;
+
