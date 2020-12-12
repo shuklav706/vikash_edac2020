@@ -1,0 +1,122 @@
+mysql> create table Dept(dept_id int not null primary key,dept_name varchar(20));
+Query OK, 0 rows affected (1.61 sec)
+
+mysql> desc Dept;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| dept_id   | int(11)     | NO   | PRI | NULL    |       |
+| dept_name | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.11 sec)
+
+mysql> insert into Dept values(1,'Finance');
+Query OK, 1 row affected (0.25 sec)
+
+
+mysql> insert into Dept values(2,'Training');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into Dept values(3,'Marketing');
+Query OK, 1 row affected (0.15 sec)
+
+mysql> select * from Dept;
++---------+-----------+
+| dept_id | dept_name |
++---------+-----------+
+|       1 | Finance   |
+|       2 | Training  |
+|       3 | Marketing |
++---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> create table employee(emp_id int,emp_name varchar(50) not null,dept_id int,salary int(20),manager int,primary key(emp_id),foreign key(dept_id) references department(dept_id));
+Query OK, 0 rows affected (1.11 sec)
+
+mysql> insert into employee values(1,'Arun',1,8000,4);
+Query OK, 1 row affected (0.40 sec)
+
+mysql> insert into employee values(2,'kiran',1,7000,1);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into employee values(3,'scott',1,3000,1);
+Query OK, 1 row affected (0.17 sec)
+
+mysql> insert into employee values(4,'max',2,9000,null);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into employee values(5,'jack',2,8000,4);
+Query OK, 1 row affected (0.19 sec)
+
+mysql> insert into employee values(6,'king',null,6000,1);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select * from employee;
++--------+----------+---------+--------+---------+
+| emp_id | emp_name | dept_id | salary | manager |
++--------+----------+---------+--------+---------+
+|      1 | Arun     |       1 |   8000 |       4 |
+|      2 | kiran    |       1 |   7000 |       1 |
+|      3 | scott    |       1 |   3000 |       1 |
+|      4 | max      |       2 |   9000 |    NULL |
+|      5 | jack     |       2 |   8000 |       4 |
+|      6 | king     |    NULL |   6000 |       1 |
++--------+----------+---------+--------+---------+
+6 rows in set (0.00 sec)
+
+mysql> select count(emp_id),emp_name from employee group by emp_name;
++---------------+----------+
+| count(emp_id) | emp_name |
++---------------+----------+
+|             1 | Arun     |
+|             1 | kiran    |
+|             1 | scott    |
+|             1 | max      |
+|             1 | jack     |
+|             1 | king     |
++---------------+----------+
+6 rows in set (0.08 sec)
+
+mysql> select * from Dept order by dept_name;
++---------+-----------+
+| dept_id | dept_name |
++---------+-----------+
+|       1 | Finance   |
+|       3 | Marketing |
+|       2 | Training  |
++---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select dept_id, sum(salary) from employee group by dept_id;
++---------+-------------+
+| dept_id | sum(salary) |
++---------+-------------+
+|    NULL |        6000 |
+|       1 |       18000 |
+|       2 |       17000 |
++---------+-------------+
+3 rows in set (0.07 sec)
+
+mysql> select dept_id from employee where salary>17000 group by dept_id;
+Empty set (0.00 sec)
+
+mysql> select dept_id,sum(salary) from employee group by dept_id having sum(salary)>18000;
+Empty set (0.05 sec)
+
+mysql> select dept_id,sum(salary) from employee group by dept_id having sum(salary)>17000;
++---------+-------------+
+| dept_id | sum(salary) |
++---------+-------------+
+|       1 |       18000 |
++---------+-------------+
+1 row in set (0.00 sec)
+
+mysql> select dept_id,sum(salary) from employee group by dept_id having sum(salary)<20000;
++---------+-------------+
+| dept_id | sum(salary) |
++---------+-------------+
+|    NULL |        6000 |
+|       1 |       18000 |
+|       2 |       17000 |
++---------+-------------+
+3 rows in set (0.04 sec)
