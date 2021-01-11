@@ -1,0 +1,154 @@
+<html>
+    <head>
+        <title>Js assignment 1</title>
+        <script type="text/javascript">
+        /*
+        function sum()
+        {
+            var a=parseInt(prompt("enter 1 no"));
+            var b=parseInt(prompt("enter 2 no"));
+            var c=a+b;
+            return c;
+        }
+        var result=sum();
+        document.write("sum : "+result+"<br>");
+
+        */
+
+        /*  2.WAP to illustrate the declaration of object, assignment of value and display it. 
+        function person(firstname,lastname,age,city)
+        {
+            this.firstname=firstname;
+            this.lastname=lastname;
+            this.age=age;
+            this.city=city;
+        }
+        var per=new person("vikash","shukla",24,"allahabad");
+        document.write(per.firstname+" "+per.lastname+" "+per.age+" "+per.city);
+        */
+
+        /*
+        //2.WAP to illustrate the declaration of object, assignment of value and display it. 
+        var person=new Object();
+        person.firstname="vikash";
+        person.lastname="shukla";
+        person.age=24;
+        person.city="allahabad";
+        document.write(person.firstname+" is "+person.age+" year old");
+        */
+
+        /*
+        //3.WAP to illustrate declaration of array , assignment of value to an array and display it. 
+        var detail=["vikash","shukla","allahabad"];
+        var length=detail.length;
+        for(var i=0;i<length;i++)
+        {
+            document.write(detail[i]+"  ");
+            //console.log(detail[i]);
+        }
+        */
+
+        /*
+        //3.WAP to illustrate declaration of array , assignment of value to an array and display it. 
+        var detail=[];
+        detail.push("vikash");
+        detail.push("shukla");
+        detail.push("allahabad");
+        var length=detail.length;
+        for(var i=0;i<length;i++)
+        {
+            document.write(detail[i]+"  ");
+            //console.log(detail[i]);
+        }
+        */
+
+        // 4.Write a javascript function named is_integer which checks if the passed argument is an integer.
+        //  You can use any mathematical operator or functions defined in the Math object
+       
+        /*
+        function is_integer(p)
+        {   
+           if(!isNaN(p))
+             document.write("it's integer"+"<br>");
+             else
+             document.write("it's not integer");
+        }
+        //is_integer(4);
+        is_integer("vikash");
+        */
+        
+
+        // 5.Using the forEach function defined for an array, find the sum of the array of numbers. [ function add_all(arr) {...} ]           
+        
+        /*
+        var array=[2,4,5,6,7,8];
+        var length=array.length;
+        var sum=array.reduce(function(a,b){
+            return a+b;
+        },)
+        document.write(sum);
+        */
+
+
+        //6.Write a JavaScript program to convert temperatures to and from celsius, fahrenheit. 
+        //[ Use the formula : c/5 = (f-32)/9, where c = temperature in celsius and f = temperature in fahrenheit] 
+        /*
+        function Celcius(f)
+        {
+        return (5/9) * (f-32);
+        }
+        document.write( Celcius(77))
+      //  ==============================
+
+        function Fahrenheit(c)
+        {
+        return ((c*1.8)+32);
+        }
+        document.write(Fahrenheit(22))
+        */
+
+
+        // 7.Write a factorial function that returns the factorial of a given number, n. Make sure you return the
+        // calculated value and not just print it. [ function factorial(n){...} ]
+         /*
+            function factorial(n){
+            var fact=1;
+            for(var i =n;i>1;i--)
+            {
+            fact=fact*i;
+            }
+            return fact;
+            }
+
+            factorial(5);
+            120
+
+        */
+
+
+        // 8.Write a javascript function that converts a given amount of money into coins of denominations (1,
+        // 2, 5, 10 and 25). [ function convert_to_coins(amount) {...} ]. You may choose to print the coin
+        // denominations used on the console. E.g. convert_to_coins(87) should print 25 25 25 10 2.
+
+
+          function convert_to_Coins(amount){
+           var  tf = amount/25;   // tf=3
+            amount = amount % 25; // amount=12
+            var tn = amount/10; // tn=1
+            amount = amount % 10; //amount=2
+            var F = amount/5;
+            amount = amount % 5;
+            var t = amount/2;
+            amount = amount % 2;
+            document.write("Rs.25 Coins: "+Math.floor(tf));
+            document.write("Rs.10 Coins: "+Math.floor(tn));
+            document.write("Rs.5 Coins: "+Math.floor(F));
+            document.write("Rs.2 Coins: "+Math.floor(t));
+            document.write("Rs.1 Coins: "+Math.floor(amount));
+}
+convert_to_Coins(87);
+
+
+        </script>
+    </head>
+</html>

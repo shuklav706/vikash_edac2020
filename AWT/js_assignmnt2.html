@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript">
+    
+    
+    //1 With example illustrate variable and function closure in javascript.
+   /*
+    var counter = 0;
+    function add() {
+    var counter = 0; 
+    counter += 1;
+    }
+
+        add();
+        add();
+        add();
+        document.write(counter);
+        */
+
+        // 2) Write a javascript function named reverse which takes a string argument and returns the
+        // reversed string.
+        /*
+        function reverse(){
+        var str="vikash shukla"
+        var rev_str="";
+        for(var i=str.length-1;i>=0;i--){
+            rev_str=rev_str+str[i];
+        }
+        return rev_str;
+        }
+
+        document.write(reverse());
+        */
+
+
+        // 3)Given a javascript array of objects having a radius property as shown [{radius: 5}, {radius: 9}, {radius: 2}] , 
+        // write a comparator function to sort it
+        
+        /*
+        var circlearr=[ {radius: 5},{radius: 9},{radius: 2}];
+        circlearr.sort(function(a,b){
+            return a.radius-b.radius;
+        });
+        document.write(circlearr);
+        */
+
+       // 4)Write a Javascript program to sort elements of an array using sorting algorithm
+        /*
+       function func(){
+           var arr=[2,3,10,9,8]
+           document.write(arr.sort()+"<br>");
+          
+       }
+       func();
+       */
+
+
+       //5
+       function length_of_array(arr)
+        {
+            var count = arr.filter(function (x)
+                    {
+                        if(x != "" || x != null)
+                            return true;
+                        else
+                            return false;
+                    });
+            return count.length;
+        }
+        var array1 = [2,,8,5,9,,6,,undefined,1,0,null,3];
+
+        document.write(length_of_array(array1));
+
+
+       //6)With suitable example explain OOL concepts in javascript like Inheritance, Constructor, Encapsulation and Abstraction . 
+       /*
+       function Student(fullname, roll, age, about)
+		{
+			var age 		= age;
+			var about 	= about;
+			this.fullname 	= fullname;
+			this.roll 		= roll;
+			
+			this.getAge = function()
+			{
+				return age;
+			}
+		}
+
+		var s1 = new Student("Rohit Shetty", 23, 18, "Welcome123");
+
+		var s2 = new Student("Kirti Sharma", 12, 16, "Welcome321");
+
+		document.write(s1.fullname, s1.roll, s1.age, s1.about, s1.getAge());
+
+		document.write(s2.fullname, s2.roll, s2.age, s2.about, s2.getAge());
+
+		document.write(s1);
+
+		document.write(s2);
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
